@@ -36,10 +36,10 @@ const todosSchema = {
 }
 
 describe('Dummy JSON', function() {
-    // it('001_Test Dummy Json Get All Todos', async function () {
-    //     const res = await request.get('/todos')
-    //     expect(res.body).have.jsonSchema(todosSchema)
-    // })
+    it('001_Test Dummy Json Get All Todos', async function () {
+        const res = await request.get('/todos')
+        expect(res.body).have.jsonSchema(todosSchema)
+    })
     
     it('002_Test Dummy Json Get A Singel Todo', async function () {   
         const res = await request.get('/todos/1')
@@ -77,8 +77,10 @@ describe('Dummy JSON', function() {
     })
 
     it('008_Test Dummy Json Delete A Todo', async function () {   
-        const res = await request.get('/todos/1')
+        const res = await request.get('/todos/1', {
+            method: 'DELETE',
+          })
         expect(res.body).have.jsonSchema(todoSchema)
-        console.log(res.body)
+        // console.log(res.body)
     })
 })
