@@ -70,17 +70,16 @@ describe('Dummy JSON', function() {
         expect(res.body).have.jsonSchema(todoSchema)
     })
     // Belum Sesuai 007 - 008
-    it('007_Test Dummy Json Update A Todo', async function () {   
-        const res = await request.get('/todos/1').set('completed', false)
+    it('007_Test Dummy Json Update A Todo', async function () {
+
+        const res = await request.put('/todos/1').send({completed : false})
         expect(res.body).have.jsonSchema(todoSchema)
         // console.log(res.body)
     })
 
     it('008_Test Dummy Json Delete A Todo', async function () {   
-        const res = await request.get('/todos/1', {
-            method: 'DELETE',
-          })
+        const res = await request.del('/todos/1')
         expect(res.body).have.jsonSchema(todoSchema)
-        // console.log(res.body)
+        console.log(res.body)
     })
 })
