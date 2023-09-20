@@ -80,6 +80,6 @@ describe('Dummy JSON', function() {
     it('008_Test Dummy Json Delete A Todo', async function () {   
         const res = await request.del('/todos/1')
         expect(res.body).have.jsonSchema(todoSchema)
-        console.log(res.body)
+        // console.log(res.body)
     })
 })
