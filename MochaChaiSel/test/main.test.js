@@ -1,10 +1,10 @@
 const { Builder, Browser, By, until, WebDriver } = require('selenium-webdriver')
 const chai = require('chai')
-const setupDriver = require('./util/setupDriver')
-const LoginPage = require('./pageobjects/LoginPage')
-const DashboardPage = require('./pageobjects/DashboardPage')
-const CartPage = require('./pageobjects/CartPage')
-const CheckoutInformation = require('./pageobjects/CheckoutInformation')
+const setupDriver = require('../util/setupDriver')
+const LoginPage = require('../pageobjects/LoginPage')
+const DashboardPage = require('../pageobjects/DashboardPage')
+const CartPage = require('../pageobjects/CartPage')
+const CheckoutInformation = require('../pageobjects/CheckoutInformation')
 
 const expect = chai.expect
 
@@ -81,7 +81,6 @@ describe("SauceDemo Web Test", function() {
             expect(errMassage).have.to.include('Password is required')
         })
     })
- 
     // Dashboard Page
     describe("Add To Cart Products", function() {
         it("Jumlah Product Bertambah di Icon Keranjang", async function(){
@@ -94,7 +93,6 @@ describe("SauceDemo Web Test", function() {
             expect(totalItem).to.equal(2)
         })
     })
-
     describe("Klik Tombol Keranjang", function(){
         it("Menuju ke halaman Keranjang", async function(){
             await dashboardPage.openPage()
@@ -103,8 +101,7 @@ describe("SauceDemo Web Test", function() {
             const url = await driver.getCurrentUrl()
             expect(url).to.equal('https://www.saucedemo.com/v1/cart.html')
         })
-    })
-    
+    })  
     // Cart Page
     describe("Klik Tombol Checkout", function() {
         it('Menuju ke halaman CheckoutInformation', async function() {
@@ -114,7 +111,6 @@ describe("SauceDemo Web Test", function() {
             expect(url).to.equal("https://www.saucedemo.com/v1/checkout-step-one.html")
         })
     })
-
     // Checkout Information Page
     describe("Menginput Semua Data Dengan Benar", function(){
         it("Menuju ke halaman Overview", async function() {
