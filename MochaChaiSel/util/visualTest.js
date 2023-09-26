@@ -11,23 +11,37 @@ class visualTest{
         /** @type {WebDriver} */this.driver = driver
     }
 
-    async screenshot(pageName, pageUrl){
+    //element locator
+    baseScreenshotPath
+    actualScreenshotPath
+    isBaseScreenshotExist
+    pageScreenshot
+    pageScreenshotBuffer
+    baseScreenshotBuffer 
+
+    async openPage(pageUrl){
         await this.driver.get(pageUrl)
+    }
+
+    async setFileName(pageName){
+        this.baseScreenshotPath = `screenshots/base/${pageName}.jpg`
+        this.actualScreenshotPath = `screenshots/actual/${pageName}.jpg`
+        this.isBaseScreenshotExist = existsSync(this.baseScreenshotPath)
+    }
+
+    async takeScreenshot(){
+        this.pageScreenshot = await this.driver.takeScreenshot()
+        this.pageScreenshotBuffer = Buffer.from(this.pageScreenshot, 'base64')
+    }
     
-        const baseScreenshotPath = `screenshots/base/${pageName}.jpg`
-        const actualScreenshotPath = `screenshots/actual/${pageName}.jpg`
-        const isBaseScreenshotExist = existsSync(baseScreenshotPath)
+    async writeFile(){
+        if (this.isBaseScreenshotExist) {
+            this.baseScreenshotBuffer = readFileSync(this.baseScreenshotPath)
     
-        const pageScreenshot = await this.driver.takeScreenshot()
-        const pageScreenshotBuffer = Buffer.from(pageScreenshot, 'base64')
-        
-        if (isBaseScreenshotExist) {
-            const baseScreenshotBuffer = readFileSync(baseScreenshotPath)
-    
-            writeFileSync(actualScreenshotPath, pageScreenshotBuffer)
-            expect(pageScreenshotBuffer).to.matchImage(baseScreenshotBuffer)
+            writeFileSync(this.actualScreenshotPath, this.pageScreenshotBuffer)
+            expect(this.pageScreenshotBuffer).to.matchImage(this.baseScreenshotBuffer)
         } else {
-            writeFileSync(baseScreenshotPath, pageScreenshotBuffer)
+            writeFileSync(this.baseScreenshotPath, this.pageScreenshotBuffer)
         }
     }
 }

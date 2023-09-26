@@ -19,48 +19,42 @@ describe('Visual Test', function() {
 
     describe('Visual Test Page 1', function(){
         it('Visual Tidak Terdapat Perubahan', async function() {
-            visualTest.screenshot('Google', 'https://www.google.com/')
-
-            // const PageName = 'Alex'
-            // const PageUrl = 'https://www.google.com/'
-
-            // await driver.get(PageUrl)
-        
-            // const baseScreenshotPath = `screenshots/base/${PageName}.jpg`
-            // const actualScreenshotPath = `screenshots/actual/${PageName}.jpg`
-            // const isBaseScreenshotExist = existsSync(baseScreenshotPath)
-        
-            // const pageScreenshot = await driver.takeScreenshot()
-            // const pageScreenshotBuffer = Buffer.from(pageScreenshot, 'base64')
-
-            // if (isBaseScreenshotExist) {
-            //     const baseScreenshotBuffer = readFileSync(baseScreenshotPath)
-        
-            //     writeFileSync(actualScreenshotPath, pageScreenshotBuffer)
-            //     expect(pageScreenshotBuffer).to.matchImage(baseScreenshotBuffer)
-            // } else {
-            //     writeFileSync(baseScreenshotPath, pageScreenshotBuffer)
-            // }
+            await visualTest.openPage('https://policies.google.com/?hl=en-US')
+            await visualTest.setFileName('Google Privacy & Terms Overview')
+            await visualTest.takeScreenshot()
+            await visualTest.writeFile()
         })
     })
     describe('Visual Test Page 2', function(){
         it('Visual Tidak Terdapat Perubahan', async function() {
-            visualTest.screenshot('Google Meet', 'https://support.google.com/meet/announcements/13129399?sjid=405422622665848348-AP&authuser=0')
+            await visualTest.openPage('https://support.google.com/meet/announcements/13129399?sjid=405422622665848348-AP&authuser=0')
+            await visualTest.setFileName('Google Privacy & Terms Meet')
+            await visualTest.takeScreenshot()
+            await visualTest.writeFile()
         })
     })
     describe('Visual Test Page 3', function(){
         it('Visual Tidak Terdapat Perubahan', async function() {
-            visualTest.screenshot('Wikipedia', 'https://en.wikipedia.org/wiki/Help:Contents')
+            await visualTest.openPage('https://en.wikipedia.org/wiki/Help:Contents')
+            await visualTest.setFileName('Wikipedia')
+            await visualTest.takeScreenshot()
+            await visualTest.writeFile()
         })
     })
     describe('Visual Test Page 4', function(){
         it('Visual Tidak Terdapat Perubahan', async function() {
-            visualTest.screenshot('Github', 'https://github.com/about/developer-policy')
+            await visualTest.openPage('https://policies.google.com/technologies?hl=en-US')
+            await visualTest.setFileName('Google Privacy & Terms Technologies')
+            await visualTest.takeScreenshot()
+            await visualTest.writeFile()
         })
     })
     describe('Visual Test Page 5', function(){
         it('Visual Tidak Terdapat Perubahan', async function() {
-            visualTest.screenshot('Tokopedia', 'https://www.tokopedia.com/about/contact-us/')
+            await visualTest.openPage('https://policies.google.com/faq?hl=en-US')
+            await visualTest.setFileName('Google Privacy & Terms FAQ')
+            await visualTest.takeScreenshot()
+            await visualTest.writeFile()
         })
     })
 
