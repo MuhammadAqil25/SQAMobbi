@@ -1,6 +1,6 @@
 class DetailProductPage {
     constructor(driver){
-        this.driver = driver
+        /** @type {WebdriverIO.Browser}*/this.driver = driver
     }
 
     get notification() { return this.driver.$('/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView')}

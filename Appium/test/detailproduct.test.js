@@ -16,8 +16,8 @@ describe('Detail Product Page Testing Saucedemo App', function() {
         katalogPage = new KatalogPage(driver)
         detailProductPage = new DetailProductPage(driver)
         loginPage = new LoginPageDemo(driver)
-        await loginPage.openLoginPage()
-        await loginPage.loginProcess('bob@example.com', '10203040')
+        // await loginPage.openLoginPage()
+        // await loginPage.loginProcess('bob@example.com', '10203040')
         await katalogPage.clickProduct(1)    
     })
 
