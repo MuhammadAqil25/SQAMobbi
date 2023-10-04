@@ -10,6 +10,5 @@ export const options = {
 }
 
 export default function () {
-	http.get('https://www.google.com/')
-	
+	http.get('https://dummyjson.com/todos/1')
 }
