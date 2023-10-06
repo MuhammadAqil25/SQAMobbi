@@ -30,13 +30,11 @@ const usersSchema = {
     },
 }
 
-// const token = {
-//     headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json',
-//         'Authorization': 'Bearer 64b8408bd891b7ce40fc0d1fb6a7791b1fd7fe02e74abe3f9d9875bcc9986fa7'
-// 	}
-// } 
+const token = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer 64b8408bd891b7ce40fc0d1fb6a7791b1fd7fe02e74abe3f9d9875bcc9986fa7'
+} 
 // const token = '64b8408bd891b7ce40fc0d1fb6a7791b1fd7fe02e74abe3f9d9875bcc9986fa7'
 
 
@@ -50,28 +48,28 @@ describe('GoRest API Testing ', function(){
         // console.log(res.body)
         expect(res.body).have.jsonSchema(userSchema)
     })
-    // it('003_Add New GoRest Users', async function() {
-    //     const res = await request.post(`/users?access-token=${token}`).send({
-    //         name: "Alexandre Christie",
-    //         email: "alex_chris2@wolf.example",
-    //         gender: "Male",
-    //         status: "active"
-    //     })
-    //     console.log(res.body)
-    //     // expect(res.body).have.jsonSchema(userSchema)
-    // })
-    // it('004_Update GoRest Users Details', async function() {
-    //     const res = await request.put(`/users?access-token=${token}/5296999`).send({
-    //         name: "Clone",
-    //         email: "Clone@wolf.example",
-    //     })
-    //     console.log(res.body)
-    //     // expect(res.body).have.jsonSchema(userSchema)
-    // })
-    // it('005_Delete GoRest Users', async function() {
-    //     const res = await request.delete(`/users?access-token=${token}/5296999`)
-    //     console.log(res.body)
-    //     // expect(res.body).have.jsonSchema(userSchema)
-    // })
+    it('003_Add New GoRest Users', async function() {
+        const res = await request.post(`/users`).send({
+            name: "Alexandre Christie",
+            email: "alex_chris6@wolf.example",
+            gender: "Male",
+            status: "active"
+        }).set(token)
+        // console.log(res.body)
+        expect(res.body).have.jsonSchema(userSchema)
+    })
+    it('004_Update GoRest Users Details', async function() {
+        const res = await request.put(`/users/5297952`).send({
+            name: "Clone",
+            email: "Clone1@wolf.example",
+        }).set(token)
+        // console.log(res.body)
+        expect(res.body).have.jsonSchema(userSchema)
+    })
+    it('005_Delete GoRest Users', async function() {
+        const res = await request.del(`/users/5297871`).set(token)
+        // console.log(res.body)
+        expect(res.body).have.jsonSchema({})
+    })
 })
 
