@@ -11,7 +11,11 @@ class Page {
 
     async scrollPage(top) {
         await this.driver.executeScript(function() {
-            window.scrollTo({
+            // window.scrollTo({
+                // top: top,
+                // behavior: 'smooth'
+            // })
+            document.querySelector('html').scrollTo({
                 top: top,
                 behavior: 'smooth'
             })

@@ -20,10 +20,9 @@ describe('Mizan Store Detail Product Page', function() {
     describe.only('Click Baca Selengkapnya', function() {
         it('Diarahkan ke Deskripsi Lengkap', async function() {
             await detailProductPage.openPage()
-            await detailProductPage.scrollPage(500)
-            // await detailProductPage.clickReadmore()
-            // const text = await detailProductPage.getTextByCss('#desk > p')
-            // expect(text).to.include('Spesial Offer 2 - 13 Oktober 2023')
+            await detailProductPage.clickReadmore()
+            const text = await detailProductPage.getTextByCss('#desk > p')
+            expect(text).to.include('Spesial Offer 2 - 13 Oktober 2023')
         })
     })
     describe('Plus and Minus Amount Button', function() {
