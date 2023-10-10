@@ -1,7 +1,7 @@
 {
   "scripts": {
     "test": "mocha --no-timeouts ./test/001_dashboard.test.js",
-    "e2eTest": "mocha --no-timeouts ./test/e2e/withLogin.e2e.test.js"
+    "e2eTest": "mocha --no-timeouts ./test/e2e/*.e2e.test.js"
   },
   "dependencies": {
     "chai": "^4.3.10",
