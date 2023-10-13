@@ -1,0 +1,46 @@
+API Testing
+Mengetest GoRest API Menggunakan SuperTest
+- GET
+- POST
+- PUT
+- DEL
+
+Web Testing
+Mengetest komponen-komponen web dan E2E Testing pada Web Menggunakan Selenium
+E2E Terdiri dari :
+- Checkout Produk Tanpa Login
+- Checkout Produk Dengan Login
+Komponen Terdiri dari beberapa halaman :
+- Login
+- Dashboard / Home Page
+- Detail Produk
+- Keranjang
+- Checkout
+- Preview Checkout
+
+App Testing
+Mengetest komponen-komponen App dan E2E Testing pada App Menggunakan Appium
+E2E Testing :
+- Checkout Produk Mulai dari Login Hingga Logout
+Komponen Testing :
+- Login
+- Katalog / Dashboard / Home Page
+- Detail Produk
+- Keranjang
+- Checkout
+
+K6 
+Mengetest Protocol-Base Load Testing dan Browser-Based Load Testing
+Protocol Based :
+- Login
+- Dashboard / Home Page
+- Detail Produk
+- Keranjang
+- Checkout
+- Preview Checkout
+- Metode Pembayaran
+Browse Based : 
+- Login
+- Dashboard / Home Page
+- Detail Produk
+- Keranjang

@@ -1,6 +1,6 @@
 const { expect } = require("chai")
-const setupDriver = require("../utils/setupDriver")
-const KatalogPage = require("../pageobject/KatalogPage")
+const setupDriver = require("../../utils/setupDriver")
+const KatalogPage = require("../../pageobject/KatalogPage")
 
 describe('Katalog Page Testing', function() {
 
@@ -19,11 +19,10 @@ describe('Katalog Page Testing', function() {
         it('go to Clothing Page', async function() {
             await katalogPage.selectCategory(0)
             const text = await driver.$('android.widget.TextView').getText()
-            await driver.pause(2000)
             await katalogPage.backNav()
             expect(text).to.equal('Kids')
         })
-        it('go to Clothing Page', async function() {
+        it('go to Electronics Page', async function() {
             await katalogPage.scrollPage(1000, 630)
             await katalogPage.selectCategory(2)
             const text = await driver.$('android.widget.TextView').getText()

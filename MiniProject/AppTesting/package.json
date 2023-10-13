@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "test": "mocha --no-timeouts test/005_checkout.test.js",
+    "test": "mocha --no-timeouts test/component/*.test.js",
+    "e2eTest": "mocha --no-timeouts test/e2e/*.test.js",
     "appium": "appium --allow-cors"
   },
   "dependencies": {

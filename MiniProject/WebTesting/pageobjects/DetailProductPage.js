@@ -43,7 +43,7 @@ class DetailProductPage extends Page {
     }
 
     async clickBuy(id) {
-        await this.driver.findElement(By.css(`#klikbeli_${id}`) || this.buyBtnEl).click()
+            await this.driver.findElement(By.css(`#klikbeli_${id}`)).click()
     }
 }
 

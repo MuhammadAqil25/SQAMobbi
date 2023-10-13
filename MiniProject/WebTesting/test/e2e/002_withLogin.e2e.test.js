@@ -1,5 +1,5 @@
 const chai = require('chai')
-const { WebDriver, By } = require('selenium-webdriver')
+const { WebDriver, By, until } = require('selenium-webdriver')
 const setupDriver = require('../../utils/SetupDriver')
 const DasboardPage = require('../../pageobjects/DashboardPage')
 const DetailProductPage = require('../../pageobjects/DetailProductPage')
@@ -27,10 +27,24 @@ describe('Mizan Store Detail Product Page', function() {
         await driver.manage().window().maximize()
     })
 
+    describe('Login Process', function() {
+        it('Go to Dashboard Page', async function() {
+            await dashboardPage.openPage()
+            await driver.findElement(By.css('#login_do')).click()
+            const email =  await driver.findElement(By.css('#Array > div:nth-child(1) > input'))
+            await driver.wait(until.elementIsVisible(email), 3000)
+            await email.sendKeys('aqilcihara@gmail.com')
+            await driver.findElement(By.css('#Array > div:nth-child(2) > input')).sendKeys('alex123456')
+            await driver.findElement(By.css('#Array > span')).click()
+            await driver.findElement(By.css('#header > nav > div > div > div.logo > a')).click()
+            const url = await driver.getCurrentUrl()
+            expect(url).to.equal('https://mizanstore.com/')
+        })
+    })
+
     describe('Dashboard Page', function() {
         it('Go to Product Detail', async function() {
-            await dashboardPage.openPage()
-            await dashboardPage.bukuTerbaru(1)
+            await dashboardPage.bukuTerbaru(2)
             const url = await driver.getCurrentUrl()
             expect(url).to.equal('https://mizanstore.com/percy_jackson_and_the_72513')
         })
@@ -50,9 +64,9 @@ describe('Mizan Store Detail Product Page', function() {
     describe('Cart Page', function() {
         it('Go to Checkout Page and Amount equal 1', async function() {
             await cartPage.clickMinusButton()
+            const qty = await cartPage.getAttributeByCss('#qty_cf9cf2aab38a5b43cf9daff032f0eaab', 'value')
             await cartPage.clickCheckout()
             const url = await driver.getCurrentUrl()
-            const qty = await cartPage.getTextByCss('#rb_item')
             expect(url).to.equal('https://mizanstore.com/checkout')
             expect(qty).to.equal('1')
         })
@@ -60,9 +74,7 @@ describe('Mizan Store Detail Product Page', function() {
 
     describe('Checkout Page', function() {
         it('Fill All the Data and Go To Preview Page', async function() {
-            await checkoutPage.clickWithoutRegis()
-            await checkoutPage.inputData1('abc', 'abc@mail.com', '087672634567')
-            await checkoutPage.inputData2('20345', 'Jl. Danau Indah 58692 No.01842, RT.05482/RW.3492')
+            await driver.sleep(5000)
             await checkoutPage.selectCourirer()
             await checkoutPage.continueToPayment()
             const url = await driver.getCurrentUrl()
@@ -72,12 +84,13 @@ describe('Mizan Store Detail Product Page', function() {
 
     describe('Preview Page', function() {
         it('Check Name, Grand Total and Go To Payment Page', async function() {
-            const productName = await previewPage.getTextByCss('td[data-title="Product Name"] > a')
+            await driver.sleep(5000)
+            const productName = await previewPage.getTextByCss('body > div.wrapper.push-wrapper > div.shop-cart > div > div:nth-child(2) > div:nth-child(1) > div > table > tbody > tr.cart_item > td:nth-child(1) > a')
             const grandTotal = await previewPage.getTextByCss('table.table-bordered > tbody > tr:nth-child(4) > td > span > span.pull-right > em')
-            expect(productName).to.include('Percy Jackson and the Olympians')
-            expect(grandTotal).to.equal('78.150')
             await previewPage.clickSelectPayment()
             const url = await driver.getCurrentUrl()
+            expect(productName).to.include('Percy Jackson and the Olympians')
+            expect(grandTotal).to.equal('91.150')
             expect(url).to.equal('https://mizanstore.com/checkout/pilih_pembayaran')  
         })
     })

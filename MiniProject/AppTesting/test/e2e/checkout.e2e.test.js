@@ -1,10 +1,10 @@
 const { expect } = require('chai')
-const setupDriver = require('../utils/setupDriver')
-const LoginPage = require('../pageobject/LoginPage')
-const KatalogPage = require('../pageobject/KatalogPage')
-const DetailProductPage = require('../pageobject/DetailProductPage')
-const CheckoutPage = require('../pageobject/CheckoutPage')
-const AccountPage = require('../pageobject/AccountPage')
+const setupDriver = require('../../utils/setupDriver')
+const LoginPage = require('../../pageobject/LoginPage')
+const KatalogPage = require('../../pageobject/KatalogPage')
+const DetailProductPage = require('../../pageobject/DetailProductPage')
+const CheckoutPage = require('../../pageobject/CheckoutPage')
+const AccountPage = require('../../pageobject/AccountPage')
 
 describe('E2E Checkout testing', function() {
     /** @type {WebdriverIO.Browser} */ let driver

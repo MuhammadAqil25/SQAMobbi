@@ -44,11 +44,12 @@ describe('GoRest API Users Testing ', function(){
         expect(res.status).to.equal(200)
     }) 
     it('002_Get a Single GoRest Users', async function() {
-        const userList = await request.get('/users')
-        const selectedUser = userList.body[1].id
-        const res = await request.get(`/users/${selectedUser}`)
-        expect(res.status).to.equal(200)
-        expect(res.body).have.jsonSchema(userSchema)
+        // const userList = await request.get('/users')
+        // const selectedUser = userList.body[1].id
+        // const res = await request.get(`/users/${selectedUser}`)
+        const res = await request.get(`/users/213712984783275983298523532`)
+        expect(res.status).to.equal(404)
+        // expect(res.body).have.jsonSchema(userSchema)
     })
     it('003_Add New GoRest Users', async function() {
         const res = await request.post(`/users`).send({

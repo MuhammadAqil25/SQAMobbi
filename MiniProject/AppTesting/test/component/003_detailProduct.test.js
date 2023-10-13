@@ -1,8 +1,8 @@
 const { expect } = require("chai")
-const setupDriver = require("../utils/setupDriver")
-const KatalogPage = require("../pageobject/KatalogPage")
-const DetailProductPage = require("../pageobject/DetailProductPage")
-const LoginPage = require("../pageobject/LoginPage")
+const setupDriver = require("../../utils/setupDriver")
+const KatalogPage = require("../../pageobject/KatalogPage")
+const DetailProductPage = require("../../pageobject/DetailProductPage")
+const LoginPage = require("../../pageobject/LoginPage")
 
 describe('Detail Product Page Testing', function() {
 

@@ -1,14 +1,14 @@
 const chai = require('chai')
 const { WebDriver, By } = require('selenium-webdriver')
-const setupDriver = require('../utils/SetupDriver')
-const PreviewPage = require('../pageobjects/PreviewPage')
-const DetailProductPage = require('../pageobjects/DetailProductPage')
-const CartPage = require('../pageobjects/CartPage')
-const CheckoutPage = require('../pageobjects/CheckoutPage')
+const setupDriver = require('../../utils/SetupDriver')
+const PreviewPage = require('../../pageobjects/PreviewPage')
+const DetailProductPage = require('../../pageobjects/DetailProductPage')
+const CartPage = require('../../pageobjects/CartPage')
+const CheckoutPage = require('../../pageobjects/CheckoutPage')
 
 const expect = chai.expect
 
-describe('Mizan Store Detail Product Page', function() {
+describe('Mizan Store Preview Page', function() {
     /** @type {WebDriver} */let driver
     /** @type {DetailProductPage} */ let detailProductPage
     /** @type {CartPage} */ let cartPage
@@ -23,7 +23,7 @@ describe('Mizan Store Detail Product Page', function() {
         previewPage = new PreviewPage(driver)
         await driver.manage().window().maximize()
         await detailProductPage.openPage()
-        await detailProductPage.clickBuy()
+        await detailProductPage.clickBuy(72498)
         await cartPage.clickCheckout()
         await checkoutPage.clickWithoutRegis()
         await checkoutPage.inputData1('abc', 'abc@mail.com', '087672634567')

@@ -1,7 +1,7 @@
 const chai = require('chai')
 const { WebDriver, By } = require('selenium-webdriver')
-const setupDriver = require('../utils/SetupDriver')
-const LoginPage = require('../pageobjects/LoginPage')
+const setupDriver = require('../../utils/SetupDriver')
+const LoginPage = require('../../pageobjects/LoginPage')
 
 const expect = chai.expect
 

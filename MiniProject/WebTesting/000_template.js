@@ -1,6 +1,6 @@
 const chai = require('chai')
 const { WebDriver, By } = require('selenium-webdriver')
-const setupDriver = require('../utils/SetupDriver')
+const setupDriver = require('./utils/SetupDriver')
 
 const expect = chai.expect
 

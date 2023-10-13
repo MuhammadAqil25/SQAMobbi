@@ -1,13 +1,13 @@
 const chai = require('chai')
 const { WebDriver, By, until } = require('selenium-webdriver')
-const setupDriver = require('../utils/SetupDriver')
-const DetailProductPage = require('../pageobjects/DetailProductPage')
-const CartPage = require('../pageobjects/CartPage')
-const CheckoutPage = require('../pageobjects/CheckoutPage')
+const setupDriver = require('../../utils/SetupDriver')
+const DetailProductPage = require('../../pageobjects/DetailProductPage')
+const CartPage = require('../../pageobjects/CartPage')
+const CheckoutPage = require('../../pageobjects/CheckoutPage')
 
 const expect = chai.expect
 
-describe('Mizan Store Detail Product Page', function() {
+describe('Mizan Store Checkout Page', function() {
     /** @type {WebDriver} */let driver
     /** @type {DetailProductPage} */ let detailProductPage
     /** @type {CartPage} */ let cartPage
@@ -20,7 +20,7 @@ describe('Mizan Store Detail Product Page', function() {
         checkoutPage = new CheckoutPage(driver)
         await driver.manage().window().maximize()
         await detailProductPage.openPage()
-        await detailProductPage.clickBuy()
+        await detailProductPage.clickBuy(72498)
         await cartPage.clickCheckout()
     })
     //Negatif
@@ -122,12 +122,12 @@ describe('Mizan Store Detail Product Page', function() {
         it('Go To Preview Order Page', async function() {
             await checkoutPage.openPage()
             await checkoutPage.clickWithoutRegis()
-            await checkoutPage.inputData1('abc', 'abc@mail.com', '087672634567')
-            await checkoutPage.inputData2('20345', 'Jl. Danau Indah 58692 No.01842, RT.05482/RW.3492')
             await checkoutPage.selectCourirer()
             await checkoutPage.continueToPayment()
             const url = await driver.getCurrentUrl()
+            const text = await checkoutPage.getTextByCss('body > div.wrapper.push-wrapper > div.shop-cart > div > div:nth-child(2) > div:nth-child(1) > div > table > tbody > tr.cart_item > td:nth-child(1) > a')
             expect(url).to.equal('https://mizanstore.com/checkout/order_preview')
+            expect(text).to.include('Paket Andre - Happy Birth-Die 2')
         })
     })
 

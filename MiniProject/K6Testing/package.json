@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "k6": "k6 run main.js",
+        "k6cloud": "k6 run --out cloud main.js"
+    }
+}

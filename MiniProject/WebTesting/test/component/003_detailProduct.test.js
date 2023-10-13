@@ -1,8 +1,8 @@
 const chai = require('chai')
 const { WebDriver, By } = require('selenium-webdriver')
-const setupDriver = require('../utils/SetupDriver')
-const DashboardPage = require('../pageobjects/DashboardPage')
-const DetailProductPage = require('../pageobjects/DetailProductPage')
+const setupDriver = require('../../utils/SetupDriver')
+const DashboardPage = require('../../pageobjects/DashboardPage')
+const DetailProductPage = require('../../pageobjects/DetailProductPage')
 
 const expect = chai.expect
 
@@ -17,7 +17,7 @@ describe('Mizan Store Detail Product Page', function() {
         await driver.manage().window().maximize()
     })
 
-    describe.only('Click Baca Selengkapnya', function() {
+    describe('Click Baca Selengkapnya', function() {
         it('Diarahkan ke Deskripsi Lengkap', async function() {
             await detailProductPage.openPage()
             await detailProductPage.clickReadmore()
@@ -45,6 +45,7 @@ describe('Mizan Store Detail Product Page', function() {
         it('Amount Product Minus 1', async function() {
             await detailProductPage.openPage()
             await detailProductPage.scrollPage(200)
+            await detailProductPage.clickPlusButton()
             await detailProductPage.clickMinusButton()
             const text =  await detailProductPage.getAttributeByCss('.quntity-input','value' )
             expect(text).to.include('1')
@@ -72,19 +73,21 @@ describe('Mizan Store Detail Product Page', function() {
         it('Show Riview Customer of Product', async function() {
             await detailProductPage.openPage()
             await detailProductPage.clickReviewCs()
-            await driver.actions().scroll(10, 10, 200, 0).perform()
-            const text = await detailProductPage.getTextByCss('#reviews_list > ul > li')
-            expect(text).to.include('Belum Ada Review')
+            await detailProductPage.scrollPage(100)
+            const text = await detailProductPage.getTextByCss('#tb-1')
+            expect(text).to.include('Ulasan')
         })
     })
     describe('Buy Product from Detail Product', function() {
         it('Go to Cart Page and Displays Purchased Products ', async function() {
             await detailProductPage.openPage()
-            await driver.actions().scroll(10, 10, 200, 0).perform()
-            await detailProductPage.clickBuy()
+            await detailProductPage.clickPlusButton()
+            await detailProductPage.clickBuy(72498)
             const text = await detailProductPage.getTextByCss('#frm_show > div > div.col-md-8.table-responsive > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > p')
+            const qty = await detailProductPage.getAttributeByCss('#qty_79d78cb21ad5a6e26619257b3ad992c6', 'value')
             const url = await driver.getCurrentUrl()
             expect(text).to.include('Paket Andre - Happy Birth-Die 2')
+            expect(qty).to.equal('2')
             expect(url).to.include('https://mizanstore.com/keranjang') 
         })
         

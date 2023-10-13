@@ -31,26 +31,25 @@ class DashboardPage extends Page {
 
     async specialProduct(number) {
         await this.scrollPage(200)
-        await this.driver.findElement(By.xpath(`/html/body/div[1]/section[1]/div/div[12]/div/div/div/div/div[${number}]`)).click()
-        
+        await this.driver.findElement(By.xpath(`/html/body/div[1]/section[1]/div/div[2]/div/div/div/div/div[${number}]`)).click()
     }
 
     async bukuTerbaru(number) {
         await this.scrollPage(1000)
         await this.driver.sleep(2000)    
-        await this.driver.findElement(By.xpath(`/html/body/div[1]/section[1]/div/div[14]/div/div/div/div/div[${number}]`)).click()
+        await this.driver.findElement(By.xpath(`/html/body/div[1]/section[1]/div/div[4]/div/div/div/div/div[${number}]`)).click()
     }
 
     async bukuTerlaris(number) {
         await this.scrollPage(1900)
         await this.driver.sleep(2000)    
-        await this.driver.findElement(By.xpath(`/html/body/div[1]/section[1]/div/div[16]/div/div/div/div/div[${number}]`)).click()
+        await this.driver.findElement(By.xpath(`/html/body/div[1]/section[1]/div/div[6]/div/div/div/div/div[${number}]`)).click()
     }
 
     async Al_Quran(number) {
         await this.scrollPage(2500)
         await this.driver.sleep(2000)    
-        await this.driver.findElement(By.xpath(`/html/body/div[1]/section[1]/div/div[18]/div/div/div/div/div[${number}]`)).click()
+        await this.driver.findElement(By.xpath(`/html/body/div[1]/section[1]/div/div[8]/div/div/div/div/div[${number}]`)).click()
     }
 }
 
